@@ -1,0 +1,37 @@
+.survey-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.publish-survey-button {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 14px;
+  background: #22c55e;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.publish-survey-button:hover {
+  background: #16a34a;
+}
+
+.published-button {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 14px;
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 600;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .survey-card-actions {
+    flex-direction: column;
+  }
+}
