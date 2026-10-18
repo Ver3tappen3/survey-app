@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
+
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -7,26 +7,19 @@ import {
 
 import surveysReducer from "../features/surveys/surveysSlice";
 import editorReducer from "../features/editor/editorSlice";
+import responsesReducer from "../features/responses/responsesSlice";
 
 const storage = {
-  getItem: (key: string) => {
-    return Promise.resolve(
-      localStorage.getItem(key),
-    );
-  },
+  getItem: (key: string): Promise<string | null> =>
+    Promise.resolve(localStorage.getItem(key)),
 
-  setItem: (
-    key: string,
-    value: string,
-  ) => {
+  setItem: (key: string, value: string): Promise<void> => {
     localStorage.setItem(key, value);
-
     return Promise.resolve();
   },
 
-  removeItem: (key: string) => {
+  removeItem: (key: string): Promise<void> => {
     localStorage.removeItem(key);
-
     return Promise.resolve();
   },
 };
@@ -34,38 +27,26 @@ const storage = {
 const rootReducer = combineReducers({
   surveys: surveysReducer,
   editor: editorReducer,
+  responses: responsesReducer,
 });
 
 const persistConfig = {
   key: "survey-app",
   storage,
-  whitelist: [
-    "surveys",
-    "editor",
-  ],
+  whitelist: ["surveys", "editor", "responses"],
 };
 
-const persistedReducer =
-  persistReducer(
-    persistConfig,
-    rootReducer,
-  );
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store =
-  configureStore({
-    reducer: persistedReducer,
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
 
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: false,
-      }),
-  });
+export const persistor = persistStore(store);
 
-export const persistor =
-  persistStore(store);
-
-export type RootState =
-  ReturnType<typeof store.getState>;
-
-export type AppDispatch =
-  typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

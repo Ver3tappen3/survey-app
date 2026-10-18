@@ -1,0 +1,81 @@
+
+.simple-page {
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 20px;
+  color: #222;
+  font-family: Arial, sans-serif;
+}
+
+.simple-page h1 {
+  font-size: 28px;
+  margin: 24px 0 12px;
+}
+
+.simple-page p {
+  line-height: 1.5;
+}
+
+.simple-page button {
+  padding: 9px 14px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #222;
+  cursor: pointer;
+}
+
+.simple-page button:hover {
+  background: #e8e8e8;
+}
+
+.simple-question {
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+}
+
+.simple-question h3 {
+  margin-top: 0;
+  font-size: 17px;
+}
+
+.simple-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+  cursor: pointer;
+}
+
+.simple-question textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 90px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.simple-rating {
+  display: flex;
+  gap: 18px;
+  margin: 12px 0;
+}
+
+.simple-rating label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@media (max-width: 600px) {
+  .simple-page {
+    margin: 10px auto;
+    padding: 12px;
+  }
+}
